@@ -15,7 +15,7 @@ RUN cd /opt && rm -f android-sdk_r24.2-linux.tgz
 ENV ANDROID_HOME /opt/android-sdk-linux
 ENV PATH ${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools
 
-RUN echo y | android update sdk --filter platform-tools,build-tools-22.0.1,android-22,sys-img-armeabi-v7a-android-22,sys-img-x86_64-android-22,extra-android-support --no-ui --force
+RUN echo y | android update sdk --filter platform-tools,"build-tools-22.0.1","android-22","addon-google_apis-google-22","sys-img-x86-addon-google_apis-google-22","sys-img-armeabi-v7a-android-22","sys-img-x86_64-android-22",extra-android-support --no-ui --force
 
 RUN apt-get clean
 
