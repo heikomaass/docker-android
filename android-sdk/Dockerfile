@@ -1,12 +1,14 @@
-FROM ubuntu:14.04.1
+FROM ubuntu:15.04
 
-# Inspired from https://registry.hub.docker.com/u/ksoichiro/android/
+# Inspired from https://github.com/ksoichiro/dockerfiles/blob/master/android/Dockerfile
+# Inspired from https://github.com/kargs/docker-android/blob/master/Dockerfile
 MAINTAINER heiko.maass@namics.com
 
 RUN apt-get update -qq
-RUN dpkg --add-architecture i386
-RUN apt-get install -y --no-install-recommends openjdk-7-jdk 
+RUN apt-get install -y expect
+RUN apt-get install -y --no-install-recommends openjdk-8-jdk 
 RUN apt-get install -y --no-install-recommends curl
+RUN apt-get install -y lib32stdc++6 lib32z1 
 
 RUN cd /opt && curl -O http://dl.google.com/android/android-sdk_r24.2-linux.tgz
 RUN cd /opt && tar xzf android-sdk_r24.2-linux.tgz 
@@ -15,9 +17,15 @@ RUN cd /opt && rm -f android-sdk_r24.2-linux.tgz
 ENV ANDROID_HOME /opt/android-sdk-linux
 ENV PATH ${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools
 
-RUN yes | android update sdk --filter "platform-tools-preview" --no-ui --force
-RUN echo y | android update sdk --filter "build-tools-23.0.0_rc2","android-22","addon-google_apis-google-22",system-image,extra-android-support --no-ui --force
+COPY tools /opt/sdk-tools
+ENV PATH ${PATH}:/opt/sdk-tools
 
+RUN ["/opt/sdk-tools/android-accept-licenses.sh", "android update sdk --filter tools --no-ui --force -a"]
+RUN ["/opt/sdk-tools/android-accept-licenses.sh", "android update sdk --filter platform-tool --no-ui --force -a"]
+RUN ["/opt/sdk-tools/android-accept-licenses.sh", "android update sdk --filter \"build-tools-22.0.1\" --no-ui --force -a"]
+RUN ["/opt/sdk-tools/android-accept-licenses.sh", "android update sdk --filter \"extra-android-support\" --no-ui --force -a"]
+RUN ["/opt/sdk-tools/android-accept-licenses.sh", "android update sdk --filter \"android-21\" --no-ui --force -a"]
+RUN ["/opt/sdk-tools/android-accept-licenses.sh", "android update sdk --filter \"sys-img-armeabi-v7a-android-21\" --no-ui --force -a"]
 RUN apt-get clean
 
 
