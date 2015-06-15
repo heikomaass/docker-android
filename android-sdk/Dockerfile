@@ -8,7 +8,6 @@ RUN apt-get update -qq
 RUN apt-get install -y expect
 RUN apt-get install -y --no-install-recommends openjdk-8-jdk 
 RUN apt-get install -y --no-install-recommends curl
-RUN apt-get install -y lib32stdc++6 lib32z1 
 
 RUN cd /opt && curl -O http://dl.google.com/android/android-sdk_r24.2-linux.tgz
 RUN cd /opt && tar xzf android-sdk_r24.2-linux.tgz 

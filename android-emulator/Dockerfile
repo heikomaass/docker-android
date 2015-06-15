@@ -2,10 +2,11 @@ FROM heikomaass/android-sdk
 
 MAINTAINER heikomaass "heiko.maass@namics.com"
 
-RUN echo no | android create avd --force -n test -t android-21 --abi default/x86_64
+RUN echo no | android create avd --force -n test -t android-21 --abi default/armeabi-v7a 
 
 ENV HOME /root
-ADD wait-for-emulator /usr/local/bin/
-ADD start-emulator /usr/local/bin/
+COPY tools /opt/emulator-tools
+ENV PATH ${PATH}:/opt/emulator-tools
 
-
+VOLUME /workspace
+WORKDIR /workspace
