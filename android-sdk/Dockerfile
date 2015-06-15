@@ -10,6 +10,7 @@ RUN apt-get install -y expect
 RUN apt-get install -y --no-install-recommends openjdk-8-jdk 
 RUN apt-get install -y --no-install-recommends curl
 RUN apt-get install -y --no-install-recommends libncurses5:i386 libstdc++6:i386 zlib1g:i386
+RUN apt-get install -y --no-install-recommends maven
 
 RUN cd /opt && curl -O http://dl.google.com/android/android-sdk_r24.2-linux.tgz
 RUN cd /opt && tar xzf android-sdk_r24.2-linux.tgz 
@@ -27,6 +28,9 @@ RUN ["/opt/sdk-tools/android-accept-licenses.sh", "android update sdk --filter \
 RUN ["/opt/sdk-tools/android-accept-licenses.sh", "android update sdk --filter \"extra-android-support\" --no-ui --force -a"]
 RUN ["/opt/sdk-tools/android-accept-licenses.sh", "android update sdk --filter \"android-22\" --no-ui --force -a"]
 RUN ["/opt/sdk-tools/android-accept-licenses.sh", "android update sdk --filter \"sys-img-armeabi-v7a-android-22\" --no-ui --force -a"]
+RUN ["/opt/sdk-tools/android-accept-licenses.sh", "android update sdk --filter \"extra-android-m2repository\" --no-ui --force -a"]
+RUN ["/opt/sdk-tools/android-accept-licenses.sh", "android update sdk --filter \"extra-google-m2repository\" --no-ui --force -a"]
+
 RUN apt-get clean
 
 
