@@ -8,5 +8,7 @@ ENV HOME /root
 COPY tools /opt/emulator-tools
 ENV PATH ${PATH}:/opt/emulator-tools
 
+VOLUME /root/.m2
 VOLUME /workspace
 WORKDIR /workspace
+
