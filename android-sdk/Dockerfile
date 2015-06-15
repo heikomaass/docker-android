@@ -25,8 +25,8 @@ RUN ["/opt/sdk-tools/android-accept-licenses.sh", "android update sdk --filter t
 RUN ["/opt/sdk-tools/android-accept-licenses.sh", "android update sdk --filter platform-tool --no-ui --force -a"]
 RUN ["/opt/sdk-tools/android-accept-licenses.sh", "android update sdk --filter \"build-tools-22.0.1\" --no-ui --force -a"]
 RUN ["/opt/sdk-tools/android-accept-licenses.sh", "android update sdk --filter \"extra-android-support\" --no-ui --force -a"]
-RUN ["/opt/sdk-tools/android-accept-licenses.sh", "android update sdk --filter \"android-21\" --no-ui --force -a"]
-RUN ["/opt/sdk-tools/android-accept-licenses.sh", "android update sdk --filter \"sys-img-armeabi-v7a-android-21\" --no-ui --force -a"]
+RUN ["/opt/sdk-tools/android-accept-licenses.sh", "android update sdk --filter \"android-22\" --no-ui --force -a"]
+RUN ["/opt/sdk-tools/android-accept-licenses.sh", "android update sdk --filter \"sys-img-armeabi-v7a-android-22\" --no-ui --force -a"]
 RUN apt-get clean
 
 
