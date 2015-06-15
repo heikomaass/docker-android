@@ -12,9 +12,9 @@ RUN apt-get install -y --no-install-recommends curl
 RUN apt-get install -y --no-install-recommends libncurses5:i386 libstdc++6:i386 zlib1g:i386
 RUN apt-get install -y --no-install-recommends maven
 
-RUN cd /opt && curl -O http://dl.google.com/android/android-sdk_r24.2-linux.tgz
-RUN cd /opt && tar xzf android-sdk_r24.2-linux.tgz 
-RUN cd /opt && rm -f android-sdk_r24.2-linux.tgz 
+RUN cd /opt && curl -O http://dl.google.com/android/android-sdk_r24.3.2-linux.tgz 
+RUN cd /opt && tar xzf android-sdk_r24.3.2-linux.tgz 
+RUN cd /opt && rm -f android-sdk_r24.3.2-linux.tgz 
 
 ENV ANDROID_HOME /opt/android-sdk-linux
 ENV PATH ${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools
