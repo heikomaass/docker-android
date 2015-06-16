@@ -6,6 +6,8 @@ if [ $# -gt 0 ]; then
     echo "Starting emulator[$PORT]..."
     emulator64-arm -avd test -no-skin -no-audio -no-window -port $PORT &
     wait-for-emulator.sh
+    # Insanely set umask to all-read, all-write so the target files written by gradle can be changed by the (non-root) user that initially called docker
+    umask 0000
     $CMD
 else
     echo "No command is specified"
