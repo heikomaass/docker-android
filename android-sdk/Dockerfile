@@ -12,9 +12,9 @@ RUN apt-get install -y --no-install-recommends curl
 RUN apt-get install -y --no-install-recommends libncurses5:i386 libstdc++6:i386 zlib1g:i386
 RUN apt-get install -y --no-install-recommends maven
 
-RUN cd /opt && curl -O http://dl.google.com/android/android-sdk_r24.3.2-linux.tgz 
-RUN cd /opt && tar xzf android-sdk_r24.3.2-linux.tgz 
-RUN cd /opt && rm -f android-sdk_r24.3.2-linux.tgz 
+RUN cd /opt && curl -O http://dl.google.com/android/android-sdk_r24.3.4-linux.tgz 
+RUN cd /opt && tar xzf android-sdk_r24.3.4-linux.tgz 
+RUN cd /opt && rm -f android-sdk_r24.3.4-linux.tgz 
 
 ENV ANDROID_HOME /opt/android-sdk-linux
 ENV PATH ${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools
@@ -24,12 +24,13 @@ ENV PATH ${PATH}:/opt/sdk-tools
 
 RUN ["/opt/sdk-tools/android-accept-licenses.sh", "android update sdk --filter tools --no-ui --force -a"]
 RUN ["/opt/sdk-tools/android-accept-licenses.sh", "android update sdk --filter platform-tool --no-ui --force -a"]
-RUN ["/opt/sdk-tools/android-accept-licenses.sh", "android update sdk --filter \"build-tools-22.0.1\" --no-ui --force -a"]
+RUN ["/opt/sdk-tools/android-accept-licenses.sh", "android update sdk --filter \"build-tools-23.0.1\" --no-ui --force -a"]
 RUN ["/opt/sdk-tools/android-accept-licenses.sh", "android update sdk --filter \"extra-android-support\" --no-ui --force -a"]
 RUN ["/opt/sdk-tools/android-accept-licenses.sh", "android update sdk --filter \"android-22\" --no-ui --force -a"]
-RUN ["/opt/sdk-tools/android-accept-licenses.sh", "android update sdk --filter \"sys-img-armeabi-v7a-android-22\" --no-ui --force -a"]
+RUN ["/opt/sdk-tools/android-accept-licenses.sh", "android update sdk --filter \"sys-img-armeabi-v7a-addon-google_apis-google-22\" --no-ui --force -a"] 
 RUN ["/opt/sdk-tools/android-accept-licenses.sh", "android update sdk --filter \"extra-android-m2repository\" --no-ui --force -a"]
 RUN ["/opt/sdk-tools/android-accept-licenses.sh", "android update sdk --filter \"extra-google-m2repository\" --no-ui --force -a"]
+RUN ["/opt/sdk-tools/android-accept-licenses.sh", "android update sdk --filter \"extra-google-google_play_services\" --no-ui --force -a"]
 
 RUN apt-get clean
 
